@@ -53,7 +53,6 @@ app.post('/coordinadores', (req, res)=>{
           });
         }
     });
-
     // coordi.validateSync(password === password2);
 });
 

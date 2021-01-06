@@ -30,6 +30,10 @@ let alumnoSchema = new Schema({
     type: Number,
     required: [true, 'Elnumero de la calle del domicilio del alumno es necesario']
    },
+   interior:{
+    type: String,
+    required:false
+   },
    colonia:{
     type: String,
     required: [true, 'la colonia del domicilio del alumno es necesario']
@@ -70,7 +74,7 @@ let alumnoSchema = new Schema({
    },
    bachillerato:{
     type: Number,
-    required: [true, 'es necesario saber en que grado va de la prepa']
+    required: false
    },
    otroTipo:{
     type: String,
@@ -110,7 +114,127 @@ let alumnoSchema = new Schema({
        type: String,
        required: false
    },
-   
+   vocacion:{
+       type:String,
+       required: false
+   },
+   /***FINALIZAN LOS ESTUDIOS REALIZADOS PARA LA VIDA ETERNA*****/
+   /***AQUI INICIAN LAS OCUPACIONES DIVERSAS*****/
+   agrupacion:{
+       type: String,
+       required: false
+   },
+   bautismo:{
+    type: String,
+    required: false
+   },
+   confirmacion:{
+    type: String,
+    required: false
+   },
+   eucaristia:{
+    type: String,
+    required: false
+   },
+   /*****LUGAR DE TRABAJO*****/
+   calleTrabajo:{
+       type: String,
+       required: false
+   },
+   numeroTrabajo:{
+       type: Number,
+       required: false
+   },
+   coloniaTrabajo:{
+       type: String,
+       required: false
+   },
+   cpTrabajo:{
+       type: String,
+       required: false
+   },
+   telefonoTrabajo:{
+       type: Number,
+       required: false
+   },
+   nombreTrabajo:{
+       type: String,
+       required: false
+   },
+   horarioTrabajo:{
+       type: String,
+       required: false
+   },
+   tareasTrabajo:{
+       type: String,
+       required: false
+   },
+      /***FINALIZAN LAS OCUPACIONES DIVERSAS*****/
+   /***AQUI INICIAN LOS DATOS DE LOS FAMILIARES*****/
+   /***papa***/
+   apellidoPP:{
+    type: String,
+    required: [true, 'Esnecesario saber el apellido paterno']
+   },
+   apellidoPM:{
+    type: String,
+    required: [true, 'Esnecesario saber el apellido materno']
+   },
+   nombreP:{
+    type: String,
+    required: [true, 'Ocupo saber el nombre del papa']
+   },
+   vivep:{
+       type: String,
+       required: [true, 'Ocupo saber si esta vivo']
+   },
+   ocupacionP:{
+    type: String,
+    required: false
+   },
+   /**FINALIZA PAPA**/
+   /***MAMA***/
+   apellidoMP:{
+    type: String,
+    required: [true, 'Esnecesario saber el apellido paterno']
+   },
+   apellidoMM:{
+    type: String,
+    required: [true, 'Esnecesario saber el apellido materno']
+   },
+   nombreM:{
+    type: String,
+    required: [true, 'Ocupo saber el nombre del papa']
+   },
+   vivem:{
+       type: String,
+       required: [true, 'Ocupo saber si esta vivo']
+   },
+   ocupacionM:{
+    type: String,
+    required: false
+   },
+   /**FINALIZA MAMA**/
+   casadosIglesia:{
+       type: String,
+       required: [true, 'Ocupo saber si estan casados por la Iglesia']
+   },
+   casadosCivil:{
+       type: String,
+       required: [true, 'Ocupo saber si estan casados por el civil']
+   },
+   numHermanos:{
+       type:Number,
+       required: [true, 'necesito saber cuantos hermanos tiene']
+   },
+   edades:{
+       type:String,
+       required:false
+   },
+   estado:{
+       type: Boolean,
+       default: true
+   }
 });
 
-module.exports = mongoose.model('Alumno', alumnoSche
+module.exports = mongoose.model('Alumno', alumnoSchema)
