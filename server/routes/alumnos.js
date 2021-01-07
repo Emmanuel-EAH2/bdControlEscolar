@@ -5,7 +5,9 @@ const Alumno = require('../models/alumno');
 
 /**INICIA EL GET****/
 app.get('/alumnos', (req, res)=>{
-    Alumno.find({}).exec((err, alumnado)=>{
+    Alumno.find({})
+    .populate('secundaria', 'nombre coordinador')
+    .exec((err, alumnado)=>{
         if(err){
             res.status(400).json({
                 ok: false,

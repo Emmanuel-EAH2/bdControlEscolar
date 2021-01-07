@@ -13,9 +13,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 /****ROUTES****/
-app.use(require('./routes/coordinador'));
-app.use(require('./routes/login'));
+// app.use(require('./routes/coordinador'));
 app.use(require('./routes/alumnos'));
+app.use(require('./routes/reportesSabatinos'));
+app.use(require('./routes/secundaria'));
+// app.use(require('./routes/evento'));
+// app.use(require('./routes/materia'));
+// app.use(require('./routes/profesor'));
 
 
 

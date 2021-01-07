@@ -3,8 +3,8 @@ let Schema = mongoose.Schema;
 
 let alumnoSchema = new Schema({
     secundaria:{
-        type: Schema.Types.String,
-        ref: 'Coordinador'
+        type: Schema.Types.ObjectId,
+        ref: 'Secundaria'
     },
     nombre:{
         type: String,
