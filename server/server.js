@@ -16,10 +16,10 @@ app.use(cors());
 // app.use(require('./routes/coordinador'));
 app.use(require('./routes/alumnos'));
 app.use(require('./routes/reportesSabatinos'));
-app.use(require('./routes/secundaria'));
+app.use(require('./routes/secus'));
 // app.use(require('./routes/evento'));
-// app.use(require('./routes/materia'));
-// app.use(require('./routes/profesor'));
+app.use(require('./routes/materia'));
+app.use(require('./routes/profesor'));
 
 
 

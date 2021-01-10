@@ -6,7 +6,7 @@ const Alumno = require('../models/alumno');
 /**INICIA EL GET****/
 app.get('/alumnos', (req, res)=>{
     Alumno.find({})
-    .populate('secundaria', 'nombre coordinador')
+    .populate('secundaria', 'coordinador')
     .exec((err, alumnado)=>{
         if(err){
             res.status(400).json({
@@ -26,7 +26,7 @@ app.get('/alumnos', (req, res)=>{
 
 
 app.get('/alumnosAct', (req, res)=>{
-    Alumno.find({estado: true}).then(data =>{
+    Alumno.find({}).populate('secundaria', 'coordinador').exec({estado: true}).then(data =>{
         res.send(data);
     }).catch((error)=>console.log(error));
 });
@@ -40,6 +40,43 @@ app.get('/alumnos/:id', (req, res)=>{
     }).catch((error)=>console.log(error));
 });
 
+
+app.get('/AlumnosSantaInes', (req,res)=>{
+    Alumno.find({"secundaria": "Santa Ines", estado: true}).exec((err, SI)=>{
+        if(err){
+            res.status(400).json({
+                ok: false,
+                message: 'Ocurrio un error al consultar los Alumnos',
+                err
+            });
+        }
+     res.json({
+        ok:true,
+        message: 'buena consulta a los Alumnos de Santa Ines',
+        conteo:  SI.length,
+        alumnos: SI        
+    }); 
+  });
+});
+ 
+app.get('/alumnosSanJuanBautistadeLasalle', (req,res)=>{
+    Alumno.find({"secundaria": "San Juan Bautista de Lasalle", estado: true}).exec((err, SJBL)=>{
+        if(err){
+            res.status(400).json({
+                ok: false,
+                message: 'Ocurrio un error al consultar los Alumnos',
+                err
+            });
+        }
+     res.json({
+        ok:true,
+        message: 'buena consulta a los Alumnos de San Juan Bautista de Lasalle',
+        conteo:  SJBL.length,
+        alumnos: SJBL        
+    }); 
+  });
+});
+ 
 /*****FINALIZA EL GET*****/
 /******INICIA EL POST******/
 app.post('/alumnos', (req,res)=>{

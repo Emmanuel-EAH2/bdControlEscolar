@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 let reporteSchema = new Schema({
     secundaria:{
         type: Schema.Types.String,
-        ref: 'Coordinador'
+        ref: 'Secundaria'
     },
     fecha:{
         type: Date, 
@@ -81,8 +81,8 @@ let reporteSchema = new Schema({
         },
     /*******PROFESORES*******/
     nombreProfe:{
-        type: String,
-        required: [true, 'necesito saber el nombre del profesor']
+        type: Schema.Types.String,
+        ref: 'Profesores'
     },
     materia:{
         type: Schema.Types.String,
@@ -122,10 +122,6 @@ let reporteSchema = new Schema({
         required: [true, 'es demasiado importante decir cuales son las observaciones que se presentaron'],
         minlength: 20
     },
-    nombreCoordi:{
-        type: Schema.Types.String,
-        ref: 'Coordinador'
-    }
 });
 
 module.exports = mongoose.model('Reporte', reporteSchema)

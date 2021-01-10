@@ -4,7 +4,10 @@ const Reporte = require('../models/ReportesSabatinos');
 
 /****   GETS    *****/
 app.get('/reportes', (req,res)=>{
-    Reporte.find({}).exec((err, reporte)=>{
+    Reporte.find({}).populate('secundaria', 'coordinador')
+    .populate('materia', 'secundaria profesor')
+    .populate('nombreProfe', 'secundaria materiaImparte')
+    .exec((err, reporte)=>{
         if(err){
             res.status(400).json({
                 ok: false,
@@ -19,6 +22,45 @@ app.get('/reportes', (req,res)=>{
                 reportes: reporte 
         });
     });
+});
+
+app.get('/reportesSantaInes', (req,res)=>{
+    Reporte.find({"secundaria": "Santa Ines"}).exec((err, SI)=>{
+        if(err){
+            res.status(400).json({
+                ok: false,
+                message: 'Ocurrio un error al consultar los Reportes Sabatinos',
+                err
+            });
+        }
+     res.json({
+        ok:true,
+        message: 'buena consulta a los REPORTES de Santa Ines',
+        conteo:  SI.length,
+        Reportes: SI        
+       }); 
+    });
+});
+
+app.get('/reportesSanJuanBautistadeLasalle', (req,res)=>{
+    Reporte.find({"secundaria": "San Juan Bautista de Lasalle"})
+    .populate('materia', 'secundaria profesor')
+    .populate('nombreProfe', 'secundaria materiaImparte')
+    .exec((err, SJBL)=>{
+        if(err){
+            res.status(400).json({
+                ok: false,
+                message: 'Ocurrio un error al consultar los Reportes de San Juan Bautista de Lasalle',
+                err
+            });
+        }
+     res.json({
+        ok:true,
+        message: 'buena consulta a los Reportes de San Juan Bautista de Lasalle',
+        conteo:  SJBL.length,
+        Reportes: SJBL        
+    }); 
+  });
 });
 /******* FIN GETS ********/
 /********   POST    *********/
@@ -52,9 +94,7 @@ status: body.status,
 etapa: body.etapa, 
 actividad: body.actividad, 
 horaSalida: body.horaSalida, 
-observaciones: body.observaciones, 
-nombreCoordi: body.nombreCoordi,
-    
+observaciones: body.observaciones    
     });
     reporte.save((err, reporteNew)=>{
         if(err ){

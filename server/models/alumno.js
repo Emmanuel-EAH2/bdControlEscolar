@@ -3,7 +3,7 @@ let Schema = mongoose.Schema;
 
 let alumnoSchema = new Schema({
     secundaria:{
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.String,
         ref: 'Secundaria'
     },
     nombre:{
