@@ -25,7 +25,9 @@ app.get('/reportes', (req,res)=>{
 });
 
 app.get('/reportesSantaInes', (req,res)=>{
-    Reporte.find({"secundaria": "Santa Ines"}).exec((err, SI)=>{
+    Reporte.find({"secundaria": "Santa Ines"})
+    .populate('secundaria', 'coordinador')
+    .exec((err, SI)=>{
         if(err){
             res.status(400).json({
                 ok: false,
@@ -37,7 +39,7 @@ app.get('/reportesSantaInes', (req,res)=>{
         ok:true,
         message: 'buena consulta a los REPORTES de Santa Ines',
         conteo:  SI.length,
-        Reportes: SI        
+        Reportes: SI.sort()        
        }); 
     });
 });
@@ -116,7 +118,7 @@ observaciones: body.observaciones
 
 app.put('/reportes/:id', (req,res)=>{
     let id = req.body.id
-    Reporte.findByIdAndUpdate(id, req.body, {useFindAndModify: false}).then(data=>{
+    Reporte.findByIdAndUpdate(id, req.body, {useFindAndModify: false, new: true, runValidators: true, context: 'query'}).then(data=>{
         if (!data){
             res.status(404).send({
                 message: `No se pudo actualizar Alumno con id= ${id}`

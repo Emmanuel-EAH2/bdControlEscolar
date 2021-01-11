@@ -11,8 +11,8 @@ let materiaSchema = new Schema({
     required: [true, 'El nombre de la materia es requerido']
     },
     profesor:{
-        type: Schema.Types.String,
-        ref: 'Profesores'
+        type: String,
+        required: false
     }
 });
 

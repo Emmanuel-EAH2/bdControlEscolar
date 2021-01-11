@@ -26,7 +26,6 @@ app.get('/materias', (req, res)=>{
 app.get('/materiasSantaInes', (req,res)=>{
     Materia.find({"secundaria": "Santa Ines"})
     .populate('secundaria', 'coordinador')
-    .populate('profesor', '_id materia horarioClaseI horarioClaseII secundaria')
     .exec((err, SI)=>{
         if(err){
             res.status(400).json({
@@ -39,7 +38,7 @@ app.get('/materiasSantaInes', (req,res)=>{
         ok:true,
         message: 'buena consulta a las MATERIAS de Santa Ines',
         conteo:  SI.length,
-        Materias: SI        
+        Materias: SI.sort()        
        }); 
     });
 });
@@ -95,13 +94,13 @@ app.post('/materias', (req, res)=>{
 
 app.put('/materias/:id', (req,res)=>{
     let id = req.params.id
-    Materia.findByIdAndUpdate(id, req.body, {useFindAndModify: false}).then(data =>{
+    Materia.findByIdAndUpdate(id, req.body, {useFindAndModify: false, new: true, context: 'query'}).then(data =>{
         if (!data){
             res.status(404).send({
                 message: `No se pudo actualizar Materia con id= ${id}`
             });
         } else res.send({ message: "Materia actualizada correctamente" });
-    }).catch((error)=>console.log(error));
+    }).catch((error)=>console.log(error)); 
 });
 
 module.exports = app;

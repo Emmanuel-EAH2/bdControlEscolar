@@ -1,4 +1,5 @@
 const express = require('express');
+const materia = require('../models/materia');
 const app = express();
 const Profesor = require('../models/profesor');
 
@@ -24,6 +25,7 @@ app.get('/profesores', (req, res)=>{
 
 app.get('/profesSantaInes', (req,res)=>{
     Profesor.find({"secundaria": "Santa Ines"})
+    .sort({"materia": 1 })
     .populate('secundaria', 'coordinador')
     .exec((err, SI)=>{
         if(err){
@@ -37,7 +39,7 @@ app.get('/profesSantaInes', (req,res)=>{
         ok:true,
         message: 'buena consulta a los PROFESORES de Santa Ines',
         conteo:  SI.length,
-        Profes: SI        
+        Profes: SI  
         }); 
     });
 });

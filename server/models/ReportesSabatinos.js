@@ -88,22 +88,114 @@ let reporteSchema = new Schema({
         type: Schema.Types.String,
         ref: 'Materias'
     },
-    horarioClaseI:{
+    temaImpartidoDogma:{
         type: String,
-        required: [true, 'Ocupo saber a que hora inicio la clase']
+        required: false
     },
-    horarioClaseII:{
+    
+    temaImpartidoLiturgiaII:{
         type: String,
-        required: [true, 'Ocupo saber a que hora inicio la clase']
+        required: false
     },
-    temaImpartido:{
+    temaImpartidoLiturgiaI:{
         type: String,
-        required: [true, 'se requiere saber el tema que impartio']
+        required: false
     },
-    status:{
+    temaImpartidoOracion:{
+        type: String,
+        required: false
+    },
+    temaImpartidoMoralI:{
+        type: String,
+        required: false
+    },
+    temaImpartidoMoralII:{
+        type: String,
+        required: false
+    },
+    temaImpartidoMoralIII:{
+        type: String,
+        required: false
+    },
+    temaImpartidoBibliaIII:{
+        type: String,
+        required: false
+    },
+    temaImpartidoBibliaI:{
+        type: String,
+        required: false
+    },
+    temaImpartidoBibliaII:{
+        type: String,
+        required: false
+    },
+    temaImpartidoVozPapaI:{
+        type: String,
+        required: false
+    },
+    temaImpartidoVozPapaII:{
+        type: String,
+        required: false
+    },    
+    statusDogma:{
         type: String,
         required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
     },
+  
+    statusLiturgiaII:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusLiturgiaI:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusOracion:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusMoralI:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusMoralII:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusMoralIII:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusBibliaIII:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusBibliaI:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusBibliaII:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+  
+    statusVozPapaI:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+    statusVozPapaII:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+    
     /********AMBIENTACION*******/
     etapa:{
         type: String,
