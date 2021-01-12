@@ -136,7 +136,13 @@ let reporteSchema = new Schema({
     temaImpartidoVozPapaII:{
         type: String,
         required: false
-    },    
+    },
+
+    temaImpartidoFormaciondeDiri:{
+        type: String,
+        required: false
+    },
+        
     statusDogma:{
         type: String,
         required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
@@ -191,10 +197,16 @@ let reporteSchema = new Schema({
         type: String,
         required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
     },
-    statusVozPapaII:{
+    statusVozPapaIII:{
         type: String,
         required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
     },
+
+    statusFormaciondeDiri:{
+        type: String,
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+    },
+    
     
     /********AMBIENTACION*******/
     etapa:{
