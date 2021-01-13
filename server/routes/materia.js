@@ -94,12 +94,19 @@ app.post('/materias', (req, res)=>{
 
 app.put('/materias/:id', (req,res)=>{
     let id = req.params.id
-    Materia.findByIdAndUpdate(id, req.body, {useFindAndModify: false, new: true, context: 'query'}).then(data =>{
+    let profesor = req.body.profesor
+    Materia.findByIdAndUpdate(id, req.body, {useFindAndModify: false, new: true, runValidators: true , context: 'query'}).then(data =>{
         if (!data){
             res.status(404).send({
                 message: `No se pudo actualizar Materia con id= ${id}`
             });
-        } else res.send({ message: "Materia actualizada correctamente" });
+        } 
+        if (!profesor || profesor<=7) {
+            res.status(400).send({
+                message: 'Por favor ingresa algo, no puede estar vacio'
+            });
+        }  
+        else res.send({ message: "Materia actualizada correctamente" });
     }).catch((error)=>console.log(error)); 
 });
 

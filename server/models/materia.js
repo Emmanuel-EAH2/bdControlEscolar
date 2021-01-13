@@ -8,11 +8,12 @@ let materiaSchema = new Schema({
    }, 
    _id:{
     type: String,
-    required: [true, 'El nombre de la materia es requerido']
+    required: false
     },
     profesor:{
         type: String,
-        required: false
+        required: [true, 'el nombre del profesor es extremadamente requerido'],
+        minlength:7
     }
 });
 
