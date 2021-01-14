@@ -68,19 +68,18 @@ app.post('/materias', (req, res)=>{
       _id: body._id,
       profesor: body.profesor,
     });
-
+    if (!req.body){
+        return res.status(400).json({
+            ok: false,
+            message: 'Rellena todos los campos correctamente',
+            err 
+        }); 
+       } else
     materias.save((err, materiasNew)=>{
         if(err){
             return res.status(400).json({ 
                 ok: false,
                 message: 'No se pudo ejecutar el POST correctamente',
-                err 
-            }); 
-           }
-           if (!req.body){
-            return res.status(400).json({
-                ok: false,
-                message: 'Rellena todos los campos correctamente',
                 err 
             }); 
            }
@@ -101,7 +100,7 @@ app.put('/materias/:id', (req,res)=>{
                 message: `No se pudo actualizar Materia con id= ${id}`
             });
         } 
-        if (!profesor || profesor<=7) {
+        if (!profesor) {
             res.status(400).send({
                 message: 'Por favor ingresa algo, no puede estar vacio'
             });

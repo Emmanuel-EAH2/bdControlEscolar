@@ -4,80 +4,110 @@ let Schema = mongoose.Schema;
 let reporteSchema = new Schema({
     secundaria:{
         type: Schema.Types.String,
-        ref: 'Secundaria'
+        ref: 'Secundaria',
+        required: [true, 'ES OBLIGATORIO PONER LA SECUNDARIA']
     },
     fecha:{
         type: Date, 
-        required: [true, 'es necesario poner la fecha']
+        required: [true, 'es necesario poner la fecha'],
+        maxlength: 11        
     },
     lectura:{
         type: String,
-        required: [true, 'se ocupa sbaer la lectura realizada']
+        required: [true, 'se ocupa sbaer la lectura realizada'],
+        minlength: 10
     },
     cita:{
         type: String,
-        required: [true, 'cual es la cita de la lectura']
+        required: [true, 'cual es la cita de la lectura'],
+        minlength:4
     },
     horaInicio:{
         type: String,
-        required: [true, 'a que hora inicio la clase']
+        required: [true, 'a que hora inicio la clase'],
+        maxlength: 6
     },
     avisosGenerales:{
         type: String,
-        required: [true, 'Se necesita por lo menos un escrito']
+        required: [true, 'Se necesita por lo menos un escrito'],
+        minlength: 6
     },
     /***ALUMNOS****/
     /********PUNTUALIDAD********/
         mujeresPrimeroPuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         mujeresSegundoPuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         mujeresTerceroPuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         
         hombresPrimeroPuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         hombresSegundoPuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         hombresTerceroPuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
     /********ASISTENCIA*********/
         mujeresPrimeroInpuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         mujeresSegundoInpuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         mujeresTerceroInpuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         
         hombresPrimeroInpuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         hombresSegundoInpuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
         hombresTerceroInpuntuales:{
             type:Number,
-            required: [true, 'requiero saber la cantidad']
+            required: [true, 'requiero saber la cantidad'],
+            minlength: 1,
+            maxlength: 2
         },
     /*******PROFESORES*******/
     nombreProfe:{
@@ -145,77 +175,92 @@ let reporteSchema = new Schema({
         
     statusDogma:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusLiturgiaII:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusLiturgiaI:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusOracion:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusMoralI:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusMoralII:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusMoralIII:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusBibliaIII:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusBibliaI:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusBibliaII:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
   
     statusVozPapaI:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
     statusVozPapaIII:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
 
     statusFormaciondeDiri:{
         type: String,
-        required: [true, 'se requiere saber si Asistio o si falto o algo parecido']
+        required: [true, 'se requiere saber si Asistio o si falto o algo parecido'],
+        maxlength: 1
     },
     
     
     /********AMBIENTACION*******/
     etapa:{
         type: String,
-        required: [true, 'En que parte de la ambientacion se encuentran']
+        required: [true, 'En que parte de la ambientacion se encuentran'],
+        minlength: 5
     },
     actividad:{
         type: String,
-        required: [true, 'cual es la actividad que realizo']
+        required: [true, 'cual es la actividad que realizo'],
+        minlength: 5
     },
     horaSalida:{
         type: String,

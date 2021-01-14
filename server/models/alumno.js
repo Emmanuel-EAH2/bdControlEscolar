@@ -8,27 +8,33 @@ let alumnoSchema = new Schema({
     },
     nombre:{
         type: String,
-        required: [true, 'El nombre del alumno es necesario']
+        required: [true, 'El nombre del alumno es necesario'],
+        minlength: 3
     },
    apellidoP:{
     type: String,
-    required: [true, 'El apellido Paterno del alumno es necesario']
+    required: [true, 'El apellido Paterno del alumno es necesario'],
+    minlength: 3
    },   
    apellidoM:{
     type: String,
-    required: [true, 'El apellido Materno del alumno es necesario']
+    required: [true, 'El apellido Materno del alumno es necesario'],
+    minlength: 3
    },
    edad:{
        type: Number,
-       required: [true, 'La edad del alumno es necesario']
+       required: [true, 'La edad del alumno es necesario'],
+       minlength: 3
    },
    calle:{
     type: String,
-    required: [true, 'la calle del domicilio del alumno es necesario']
+    required: [true, 'la calle del domicilio del alumno es necesario'],
+    minlength: 3
    },
    numero:{
     type: Number,
-    required: [true, 'Elnumero de la calle del domicilio del alumno es necesario']
+    required: [true, 'Elnumero de la calle del domicilio del alumno es necesario'],
+    minlength: 3
    },
    interior:{
     type: String,
@@ -36,11 +42,13 @@ let alumnoSchema = new Schema({
    },
    colonia:{
     type: String,
-    required: [true, 'la colonia del domicilio del alumno es necesario']
+    required: [true, 'la colonia del domicilio del alumno es necesario'],
+    minlength: 3
    },
    cp:{
     type: String,
-    required: [true, 'El codigo postal del domicilio del alumno es necesario']
+    required: [true, 'El codigo postal del domicilio del alumno es necesario'],
+    minlength: 3
    },
    celular:{
     type: Number,
@@ -52,11 +60,13 @@ let alumnoSchema = new Schema({
    },
    correo:{
     type: String,
-    required: [true, 'El correo electronico del alumno es necesario']
+    required: [true, 'El correo electronico del alumno es necesario'],
+    minlength: 3
    },
    fec_nac:{
     type: Date,
-    required: [true, 'La fecha de nacimiento del alumno es necesario']
+    required: [true, 'La fecha de nacimiento del alumno es necesario'],
+    minlength: 3
    },
    lugar_nac:{
        type: String,
@@ -66,11 +76,13 @@ let alumnoSchema = new Schema({
    /***AHORA SIGEN LOS ESTUDIOS REALIZADOS PARA LA VIDA LAICAL*****/
    primaria:{
        type: Number,
-       required: [true, 'es necesario saber en que grado va de la primaria']
+       required: [true, 'es necesario saber en que grado va de la primaria'],
+       minlength: 3
    },
    secundariaEscolar:{
     type: Number,
-    required: [true, 'es necesario saber en que grado va de la secundaria']
+    required: [true, 'es necesario saber en que grado va de la secundaria'],
+    minlength: 3
    },
    bachillerato:{
     type: Number,
@@ -82,7 +94,8 @@ let alumnoSchema = new Schema({
    },
    instituo:{
     type: String,
-    required: [true, 'Necesito saber en que instituto esta estudiando']
+    required: [true, 'Necesito saber en que instituto esta estudiando'],
+    minlength: 3
    },
    especialidad:{
     type: String,
@@ -108,7 +121,8 @@ let alumnoSchema = new Schema({
    /***AQUI INICIAN LOS ESTUDIOS REALIZADOS PARA LA VIDA ETERNA*****/
    catesismo:{
     type: Number,
-    required: [true, 'es necesario saber en que grado va del catesismo']
+    required: [true, 'es necesario saber en que grado va del catesismo'],
+    minlength: 3
    },
    otroTipoCate:{
        type: String,
@@ -174,19 +188,23 @@ let alumnoSchema = new Schema({
    /***papa***/
    apellidoPP:{
     type: String,
-    required: [true, 'Esnecesario saber el apellido paterno']
+    required: [true, 'Esnecesario saber el apellido paterno'],
+    minlength: 3
    },
    apellidoPM:{
     type: String,
-    required: [true, 'Esnecesario saber el apellido materno']
+    required: [true, 'Esnecesario saber el apellido materno'],
+    minlength: 3
    },
    nombreP:{
     type: String,
-    required: [true, 'Ocupo saber el nombre del papa']
+    required: [true, 'Ocupo saber el nombre del papa'],
+    minlength: 3
    },
    vivep:{
        type: String,
-       required: [true, 'Ocupo saber si esta vivo']
+       required: [true, 'Ocupo saber si esta vivo'],
+       minlength: 3
    },
    ocupacionP:{
     type: String,
@@ -196,19 +214,23 @@ let alumnoSchema = new Schema({
    /***MAMA***/
    apellidoMP:{
     type: String,
-    required: [true, 'Esnecesario saber el apellido paterno']
+    required: [true, 'Esnecesario saber el apellido paterno'],
+    minlength: 3
    },
    apellidoMM:{
     type: String,
-    required: [true, 'Esnecesario saber el apellido materno']
+    required: [true, 'Esnecesario saber el apellido materno'],
+    minlength: 3
    },
    nombreM:{
     type: String,
-    required: [true, 'Ocupo saber el nombre del papa']
+    required: [true, 'Ocupo saber el nombre del papa'],
+    minlength: 3
    },
    vivem:{
        type: String,
-       required: [true, 'Ocupo saber si esta vivo']
+       required: [true, 'Ocupo saber si esta vivo'],
+       minlength: 3
    },
    ocupacionM:{
     type: String,
@@ -217,15 +239,18 @@ let alumnoSchema = new Schema({
    /**FINALIZA MAMA**/
    casadosIglesia:{
        type: String,
-       required: [true, 'Ocupo saber si estan casados por la Iglesia']
+       required: [true, 'Ocupo saber si estan casados por la Iglesia'],
+       minlength: 3
    },
    casadosCivil:{
        type: String,
-       required: [true, 'Ocupo saber si estan casados por el civil']
+       required: [true, 'Ocupo saber si estan casados por el civil'],
+       minlength: 3
    },
    numHermanos:{
        type:Number,
-       required: [true, 'necesito saber cuantos hermanos tiene']
+       required: [true, 'necesito saber cuantos hermanos tiene'],
+       minlength: 3
    },
    edades:{
        type:String,

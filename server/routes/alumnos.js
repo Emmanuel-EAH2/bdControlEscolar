@@ -136,19 +136,25 @@ let body = req.body;
         casadosCivil: body.casadosCivil,
         numHermanos: body.numHermanos,
         edades: body.edades
-    });
-    alumno.save((err, alumnoNew)=>{ 
+    }); 
+
+    if(req.body.secundaria != "Santa Ines"){
+        return res.status(400).json({
+            ok: false,
+            message: 'Favor de escribir correctamente el nombre de la secundaria Santa Ines', 
+        });
+    }
+    if (!req.body){
+        return res.status(400).json({
+            ok: false,
+            message: 'Rellena todos los campos correctamente',
+            err 
+        }); 
+       } else alumno.save((err, alumnoNew)=>{ 
         if(err ){
             return res.status(400).json({
                 ok: false,
                 message: 'No se pudo ejecutar el POST correctamente',
-                err 
-            }); 
-           }
-           if (!req.body){
-            return res.status(400).json({
-                ok: false,
-                message: 'Rellena todos los campos correctamente',
                 err 
             }); 
            }

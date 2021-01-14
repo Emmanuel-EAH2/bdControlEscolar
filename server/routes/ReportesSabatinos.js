@@ -122,8 +122,14 @@ actividad: body.actividad,
 horaSalida: body.horaSalida, 
 observaciones: body.observaciones    
     });
-    reporte.save((err, reporteNew)=>{
-        if(err ){
+    
+    if (req.body.secundaria != 'Santa Ines') {
+        return res.status(400).json({
+            ok: false,
+            message: 'favor de escribir bien el nombre de la secundaria "Santa Ines"'
+        });
+    }else reporte.save((err, reporteNew)=>{
+        if(err){
             return res.status(400).json({
                 ok: false,
                 message: 'No se pudo ejecutar el POST correctamente',
@@ -133,7 +139,7 @@ observaciones: body.observaciones
            res.json({
                ok: true,
                message:'REPORTE SABATINO creado con exito',
-               reporte
+               reporteNew
            });
     });
 });

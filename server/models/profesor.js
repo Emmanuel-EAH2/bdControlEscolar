@@ -4,7 +4,8 @@ let Schema = mongoose.Schema;
 let profesSchema= new Schema({
     secundaria:{
         type: Schema.Types.String,
-        ref:'Secundaria'      
+        ref:'Secundaria',
+        required: [true, 'debo saber cual secundaria es']
     },
     _id:{
         type: String,
