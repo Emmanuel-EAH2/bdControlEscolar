@@ -76,12 +76,14 @@ app.get('/alumnosSanJuanBautistadeLasalle', (req,res)=>{
     }); 
   });
 });
+
  
 /*****FINALIZA EL GET*****/
 /******INICIA EL POST******/
 app.post('/alumnos', (req,res)=>{
 let body = req.body;
     let alumno = new Alumno({
+        _id: body._id,
         secundaria: body.secundaria,
         nombre: body.nombre,
         apellidoP: body.apellidoP,

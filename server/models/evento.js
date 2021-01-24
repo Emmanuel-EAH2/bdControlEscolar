@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
   let Schema = mongoose.Schema;
 
+
   let eventosSchema = new Schema({
-    
+    _id: mongoose.Schema.Types.Number ,
     secundaria:{
         type: Schema.Types.String,
         ref: 'Secundaria',
@@ -10,19 +11,19 @@ const mongoose = require('mongoose');
     },
     nombre:{
         type: String,
-        required: [false, 'El nombre del evento es requerido']
+        required: [true, 'El nombre del evento es requerido']
     },
-    dia:{
+    dia:{ 
         type: Date,
-        required: [false, 'Cuando se realizará el evento']
+        required: [true, 'Cuando se realizará el evento']
     },
     objetivos:{
         type: String,
-        required: [false, 'los objetivos son necesarios para el evento']
+        required: [true, 'los objetivos son necesarios para el evento']
     },
     materiales:{
         type: String,
-        requerid: [false, 'cuales son los materiales que ocuparemos']
+        requerid: [true, 'cuales son los materiales que ocuparemos']
     },
     coordinadoresAux:{
         type: String,
@@ -30,15 +31,11 @@ const mongoose = require('mongoose');
     },
     estimacionAlumnos:{
         type: Number,
-        requerid: [false, 'debe de haber un numero estimado de alumnos']
+        requerid: [true, 'debe de haber un numero estimado de alumnos']
     },
     actividades:{
         type: String,
-        required: [false, 'cuales son las actividades que se realizarán']
-    },
-    img:{
-        type: String,
-        required: false
+        required: [true, 'cuales son las actividades que se realizarán']
     },
     horaInicio:{
         type: String,
@@ -46,8 +43,28 @@ const mongoose = require('mongoose');
     },
     horaTermina:{
         type:String,
-        required: [false, 'la hora en que finaliza']
+        required: [true, 'la hora en que finaliza']
     }
   });
 
+
+//   let imageSchema = new Schema({
+//     img:{
+//         type: String
+//     },
+//     imgfilename:{
+//         type: String,
+//         required: false
+//     },
+//     imgpath:{
+//         type: String,
+//         required: false
+//     },
+//     imgoriginalname:{
+//         type: String,
+//         required: false
+//     }
+//   })
+
   module.exports = mongoose.model('Eventos', eventosSchema);
+//   module.exports = mongoose.model('Image', imageSchema);

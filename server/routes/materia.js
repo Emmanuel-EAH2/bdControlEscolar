@@ -38,7 +38,7 @@ app.get('/materiasSantaInes', (req,res)=>{
         ok:true,
         message: 'buena consulta a las MATERIAS de Santa Ines',
         conteo:  SI.length,
-        Materias: SI.sort()        
+        Materias: SI.sort()      
        }); 
     });
 });

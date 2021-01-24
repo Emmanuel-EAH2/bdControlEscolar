@@ -6,7 +6,11 @@ let alumnoSchema = new Schema({
         type: Schema.Types.String,
         ref: 'Secundaria'
     },
-    nombre:{
+    _id:{
+        type: Number,
+        required: [true, 'Es necesario saber el folio del alumno'],
+    },
+   nombre:{
         type: String,
         required: [true, 'El nombre del alumno es necesario'],
         minlength: 3
@@ -24,7 +28,7 @@ let alumnoSchema = new Schema({
    edad:{
        type: Number,
        required: [true, 'La edad del alumno es necesario'],
-       minlength: 3
+       minlength: 2
    },
    calle:{
     type: String,
@@ -77,12 +81,12 @@ let alumnoSchema = new Schema({
    primaria:{
        type: Number,
        required: [true, 'es necesario saber en que grado va de la primaria'],
-       minlength: 3
+       minlength: 1
    },
    secundariaEscolar:{
     type: Number,
     required: [true, 'es necesario saber en que grado va de la secundaria'],
-    minlength: 3
+    minlength: 1
    },
    bachillerato:{
     type: Number,
@@ -122,7 +126,7 @@ let alumnoSchema = new Schema({
    catesismo:{
     type: Number,
     required: [true, 'es necesario saber en que grado va del catesismo'],
-    minlength: 3
+    minlength: 1
    },
    otroTipoCate:{
        type: String,
@@ -204,7 +208,7 @@ let alumnoSchema = new Schema({
    vivep:{
        type: String,
        required: [true, 'Ocupo saber si esta vivo'],
-       minlength: 3
+       minlength: 2
    },
    ocupacionP:{
     type: String,
@@ -230,7 +234,7 @@ let alumnoSchema = new Schema({
    vivem:{
        type: String,
        required: [true, 'Ocupo saber si esta vivo'],
-       minlength: 3
+       minlength: 2
    },
    ocupacionM:{
     type: String,
@@ -240,17 +244,17 @@ let alumnoSchema = new Schema({
    casadosIglesia:{
        type: String,
        required: [true, 'Ocupo saber si estan casados por la Iglesia'],
-       minlength: 3
+       minlength: 2
    },
    casadosCivil:{
        type: String,
        required: [true, 'Ocupo saber si estan casados por el civil'],
-       minlength: 3
+       minlength: 2
    },
    numHermanos:{
        type:Number,
        required: [true, 'necesito saber cuantos hermanos tiene'],
-       minlength: 3
+       minlength: 1
    },
    edades:{
        type:String,

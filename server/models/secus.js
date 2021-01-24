@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { unique } = require('underscore');
 const Schema = mongoose.Schema;
 
 let secundariaSchema = new Schema({

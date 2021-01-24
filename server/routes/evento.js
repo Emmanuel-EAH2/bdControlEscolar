@@ -2,18 +2,22 @@ const express = require('express');
 const app = express();
 const multer = require('multer');
 const path = require('path');
+const { errorMonitor } = require('stream');
 const Evento = require('../models/evento');
+const Imagen = require('../models/evento');
 
 const storage = multer.diskStorage({
-    destination: path.join(__dirname, 'sources'),
-    filename: (req, file, callB)=>{
-      callB(null, file.originalname);
-    } 
-  });
+  destination: path.join(__dirname, '../../sources/image'),
+ filename: (req, file, callB)=>{
+   callB(null, file.originalname);
+ }
+
+});
+
 
 /*******FUNCIONES GET*******/
 app.get('/evento', (req, res)=>{
-    Evento.find({}).populate('secundaria', 'coordinador').exec((err, evento, imagen)=>{
+    Evento.find({}).populate('secundaria', 'coordinador').exec((err, evento)=>{
         if(err){
             res.status(400).json({
                 ok: false,
@@ -23,16 +27,36 @@ app.get('/evento', (req, res)=>{
         }
         res.json({
             ok:true,
-            message: 'buena consulta a los Alumnos de Santa Ines',
+            message: 'buena consulta a los Eventos',
             conteo:  evento.length,
-            eventos: evento,        
+            eventos: evento 
         });
     });
 });
 
+// app.get('/imagenes', (req,res)=>{
+//   Imagen.find({}).exec((err,img)=>{
+//     if(err){
+//       res.status(400).json({
+//           ok: false,
+//           message: 'Ocurrio un error al consultar los EVENTOS',
+//           err
+//       });
+//     }
+//     res.json({
+//       ok:true,
+//       message: 'Imagenes consultadas con EXITO',
+//       conteo: img.length,
+//       imagenes: img
+//     })
+//   });
+// });
+
 app.get('/evento/:id', (req, res)=>{
-        let id = req.params.id;
-        Evento.findById(id).then(data =>{
+    let id = req.params.id
+  Evento.findById(Number(id))
+  .populate("secundaria", "coordinador")
+  .then(data =>{
             if (!data)
             res.status(404).send({ message: `No se encontro elemento con id: ${id}`});
             else res.send(data);
@@ -40,23 +64,10 @@ app.get('/evento/:id', (req, res)=>{
 });
 /**********FIN DE FUNCIONES GET*********/
 
-const upload = multer({
-    storage,
-    dest: path.join(__dirname, 'sources'),
-    fileFilter: (req, file, callb)=>{
-      const fileTypes = /jpeg|jpg|png|gif/;
-      const mimename = fileTypes.test(file.mimetype);
-      const extname = fileTypes.test(path.extname(file.originalname));
-      if(mimename && extname){
-        return callb(null, true);
-      }
-      callb("Error: el Archivo debe ser una imagen valida")
-    }
-  }).single('img')
-
-app.post('/evento',upload,(req,res)=>{
+app.post('/evento',(req,res)=>{
     let body = req.body;
     let evento = new Evento({
+        _id: body._id,
      secundaria: body.secundaria,
      nombre: body.nombre,
      dia: body.dia,
@@ -64,20 +75,17 @@ app.post('/evento',upload,(req,res)=>{
      materiales: body.materiales,
      coordinadoresAux: body.coordinadoresAux,
      estimacionAlumnos: body.estimacionAlumnos,
-     img: req.body.img,
      actividades: body.actividades,
      horaInicio: body.horaInicio,
      horaTermina: body.horaTermina
     });
 
-
-if(req.body.secundaria != 'Santa Ines'){
-    return res.status(400).json({
-        ok: false,
-        message: `Escribe bien el nombre de la secundaria: "Santa Ines"`,
-    });
-}
-else
+    if (!req.body){
+      return res.status(400).json({
+          ok: false,
+          message: 'Rellena todos los campos correctamente',
+      }); 
+  }
  evento.save((err, eventNew)=>{
     if(err ){
         return res.status(400).json({
@@ -85,13 +93,7 @@ else
             message: 'No se pudo ejecutar el POST correctamente',
             err 
         }); 
-       }
-    if (!req.body){
-        return res.status(400).json({
-            ok: false,
-            message: 'Rellena todos los campos correctamente',
-        }); 
-    }
+      }
         res.json({
         ok: true,
         message: 'EVENTO nuevo FELICIDADES',
@@ -99,6 +101,48 @@ else
       });
     });
 
+    // _id.save((error, new_id)=>{
+    //     if(error){
+    //         return res.status(400).json({
+    //             ok: false,
+    //             message: 'No se pudo ejecutar el POST correctamente',
+    //             error 
+    //         }); 
+    //       }
+    //       res.json({
+    //         ok: true,
+    //         eventNew        
+    //       });
+    // })
+    // console.log(_id);
 });
+
+const upload = multer({ dest: path.join(__dirname, '../../sources/image'),storage: storage}).single('img');
+
+// app.post('/imagen/evento',upload,(req, res)=>{
+//   let file = req.file
+//    let imagen = new Imagen({
+//      img: req.body.img,
+//      imgfilename: file.filename, 
+//      imgpath: path.join(__dirname, '../../../sources/image'),
+//      imgoriginalname: file.originalname
+//    });
+
+//    imagen.save((error, img)=>{
+//     if(error){
+//       return res.status(400).json({
+//           ok: false,
+//           message: 'No se pudo ejecutar el POST correctamente',
+//           error
+//       }); 
+//     }
+//     console.log(req.file); 
+//     res.json({
+//       ok: true,
+//       message: 'imagen subida con exito',
+//       img
+//     });
+//   });
+// });
 
 module.exports = app;
