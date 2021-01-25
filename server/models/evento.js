@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 
   let eventosSchema = new Schema({
-    _id: mongoose.Schema.Types.Number ,
+    _id: mongoose.Schema.Types.Number,
     secundaria:{
         type: Schema.Types.String,
         ref: 'Secundaria',

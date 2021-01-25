@@ -65,56 +65,45 @@ app.get('/evento/:id', (req, res)=>{
 /**********FIN DE FUNCIONES GET*********/
 
 app.post('/evento',(req,res)=>{
-    let body = req.body;
-    let evento = new Evento({
-        _id: body._id,
-     secundaria: body.secundaria,
-     nombre: body.nombre,
-     dia: body.dia,
-     objetivos: body.objetivos,
-     materiales: body.materiales,
-     coordinadoresAux: body.coordinadoresAux,
-     estimacionAlumnos: body.estimacionAlumnos,
-     actividades: body.actividades,
-     horaInicio: body.horaInicio,
-     horaTermina: body.horaTermina
+    
+    Evento.findOne().sort({_id: -1}).then(data =>{
+        let body = req.body;
+        let aux = parseInt(data._id) + 1;
+        let evento = new Evento({
+            _id: aux,
+            secundaria: body.secundaria,
+            nombre: body.nombre,
+            dia: body.dia,
+            objetivos: body.objetivos,
+            materiales: body.materiales,
+            coordinadoresAux: body.coordinadoresAux,
+            estimacionAlumnos: body.estimacionAlumnos,
+            actividades: body.actividades,
+            horaInicio: body.horaInicio,
+            horaTermina: body.horaTermina
+        });
+        
+        if (!req.body){
+            return res.status(400).json({
+                ok: false,
+                message: 'Rellena todos los campos correctamente',
+            }); 
+        }
+        evento.save((err, eventNew)=>{
+        if(err ){
+            return res.status(400).json({
+                ok: false,
+                message: 'No se pudo ejecutar el POST correctamente',
+                err 
+            }); 
+          }
+            res.json({
+            ok: true,
+            message: 'EVENTO nuevo FELICIDADES',
+            eventNew        
+          });
+        });
     });
-
-    if (!req.body){
-      return res.status(400).json({
-          ok: false,
-          message: 'Rellena todos los campos correctamente',
-      }); 
-  }
- evento.save((err, eventNew)=>{
-    if(err ){
-        return res.status(400).json({
-            ok: false,
-            message: 'No se pudo ejecutar el POST correctamente',
-            err 
-        }); 
-      }
-        res.json({
-        ok: true,
-        message: 'EVENTO nuevo FELICIDADES',
-        eventNew        
-      });
-    });
-
-    // _id.save((error, new_id)=>{
-    //     if(error){
-    //         return res.status(400).json({
-    //             ok: false,
-    //             message: 'No se pudo ejecutar el POST correctamente',
-    //             error 
-    //         }); 
-    //       }
-    //       res.json({
-    //         ok: true,
-    //         eventNew        
-    //       });
-    // })
-    // console.log(_id);
 });
 
 const upload = multer({ dest: path.join(__dirname, '../../sources/image'),storage: storage}).single('img');

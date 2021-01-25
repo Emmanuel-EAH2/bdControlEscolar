@@ -7,7 +7,8 @@ const port = process.env.PORT || 3003;
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-
+const MongoStore = require('connect-mongo')(session);
+const conn = require('./connection');
 
 
 // parse application/x-www-form-urlencoded
